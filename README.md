@@ -3,7 +3,7 @@ Compile multiple File with this bundler
 
 sudo apt-get install npm
 sudo npm install -g fs
-sudo cp bundle /var/bin/
+sudo cp bundle /bin/
 
 now you can use bundle to merge your js file
 
