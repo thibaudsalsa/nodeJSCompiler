@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+const fs = require("fs");
+
+compile();
+
+function compile() {
+    const argv = process.argv;
+    if (argv.length == 3 && argv[2] == "-h") {
+        console.log("USAGE:\n\nbundle file1 file2\nbundle -h\nbundle -n filetocreate file1 file2")
+        return;
+    } else if (argv.length <= 3) {
+        console.log("\x1b[41m", "You need at least 2 fill to compile\nUse bundle like this -> ./bundle file1 file2 ...\n\n Work only with JS file");
+        return;
+    }
+    let i = 2;
+    let fileName = "a.out";
+    if (argv[2] == "-n") {
+        i = 4;
+        if (argv.length < 6) {
+            console.log("\x1b[41m", "You need at least 2 fill to compile\nUse bundle like this -> ./bundle -n filenametocreate file1 file2 ...\n\n Work only with JS file");
+            return;
+        } else {
+            fileName = argv[3];
+        }
+    }
+    let txt = ""
+    for (i; i < argv.length; i++) {
+        try {
+            txt += fs.readFileSync(argv[i], "utf-8");   
+        } catch (error) {
+            console.log("\x1b[41m", "Cannot find the file " + argv[i]);
+            return;
+        }
+    }
+    txt = "#!/usr/bin/env node\n" + txt;
+    fs.writeFileSync(fileName, txt, "utf-8");
+    fs.chmodSync(fileName, 0777);
+}

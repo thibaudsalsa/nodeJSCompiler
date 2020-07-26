@@ -1,0 +1,14 @@
+{
+  "name": "bundler",
+  "version": "1.0.0",
+  "description": "compile js file to a single file to work with a clean repo",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thibaud Salsa",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
+}
